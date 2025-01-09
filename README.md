@@ -14,17 +14,18 @@ A lightweight WordPress plugin that displays a page hit counter with dynamic ani
 
 ## Development
 
-1. **Clone repo**
+1. Clone repo
 2. `cd` in to your repo
-3. `composer install`
-4. Do your changes
+3. Run `composer install`
+4. Do your code changes
 5. Build zip for WP, run `composer build`
 
 
 ## WP Installation
 
 1. **Download Plugin**
-   - Download the plugin as a `.zip` file.
+   - Download plugin `.zip` file from [releases](https://github.com/andriussok/simple-hit-counter/releases/).
+   - Or generate your own from this repo.
 
 2. **Upload to WordPress**
    - Navigate to **Plugins > Add New > Upload Plugin** in your WordPress dashboard.
