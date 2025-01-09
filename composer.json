@@ -1,0 +1,17 @@
+{
+  "name": "andriussok/simple-hit-counter",
+  "description": "A lightweight WordPress plugin that displays a page hit counter with dynamic animations and LED digit7 style display.",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "andriussok"
+    }
+  ],
+    "require": {
+        "jaybizzle/crawler-detect": "^1.3"
+    },
+    "scripts": {
+      "build": "sh -c 'chmod +x build.sh && ./build.sh'"
+    }
+}

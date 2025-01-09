@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "DSEG7Classic";
+    src: url("./fonts/DSEG7-Classic/dseg7-classic-700-bold-normal.woff2") format("woff2"),
+         url("./fonts/DSEG7-Classic/dseg7-classic-700-bold-normal.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+
+#shc-counter {
+  font-family: "DSEG7Classic", monospace, sans-serif;
+  display: inline-block;
+  overflow: hidden;
+  font-size: 2rem;
+  text-align: right;
+  position: relative;
+  z-index: 1;
+}
+
+/* #shc-counter::before {
+  content: attr(data-fadedcount);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: rgba(0, 0, 0, 0.05);
+  z-index: 0;
+} */
