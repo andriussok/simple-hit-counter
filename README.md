@@ -1,6 +1,7 @@
 # Simple Hit Counter
 
 A lightweight WordPress plugin that displays a page hit counter with dynamic animations and LED Digit7 style display.
+
 <img src="https://github.com/andriussok/simple-hit-counter/blob/main/screenshot.png" width="300" />
 
 ## Features
