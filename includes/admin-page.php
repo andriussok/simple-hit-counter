@@ -93,6 +93,14 @@ function shc_sanitize_options($options) {
     ];
 }
 
+
+// Handle first-time creation of shc_options
+add_action('add_option_shc_options', function ($option, $value) {
+  if (!empty($value['dedicated_table'])) {
+      shc_migrate_meta_to_table();
+  }
+}, 10, 2);
+
 // Handle migration logic on option update
 function shc_handle_migration($old_value, $new_value) {
     if ($new_value['dedicated_table'] && !$old_value['dedicated_table']) {
@@ -118,17 +126,17 @@ function shc_migrate_meta_to_table() {
         $meta_key
     ));
 
-    // Insert into the dedicated table
-    foreach ($posts as $post) {
+    if(!empty($posts)) {
+      // Insert into the dedicated table
+      foreach ($posts as $post) {
         $post_id = (int)$post->post_id;
         $hit_count = (int)$post->meta_value;
 
         $wpdb->query($wpdb->prepare(
-            "INSERT INTO $table_name (post_id, hit_count)
-             VALUES (%d, %d)
-             ON DUPLICATE KEY UPDATE hit_count = %d",
+            "INSERT INTO $table_name (post_id, hit_count) VALUES (%d, %d) ON DUPLICATE KEY UPDATE hit_count = %d",
             $post_id, $hit_count, $hit_count
         ));
+      }
     }
 
     // Delete the metadata field after successful migration
@@ -157,7 +165,7 @@ function shc_migrate_table_to_meta() {
 function shc_ensure_table_exists() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'shc_hits';
-
+    
     if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") !== $table_name) {
         shc_create_table(); // Create the table if it doesn't exist
     }

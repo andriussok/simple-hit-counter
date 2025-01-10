@@ -25,12 +25,13 @@ if (defined('WP_UNINSTALL_PLUGIN')) {
       $wpdb->query(
           $wpdb->prepare(
               "DELETE FROM {$wpdb->postmeta} WHERE meta_key = %s",
-              SHC_META_KEY
+              '_shc_page_views'
           )
       );
+    
+      // Delete options table entry
+      delete_option('shc_options');
+      
   }
-
-  // Delete options table entry
-  delete_option('shc_options');
 }
 
