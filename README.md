@@ -1,35 +1,35 @@
 # Simple Hit Counter
 
-A lightweight WordPress plugin that displays a page hit counter with dynamic animations and LED Digit7 style display.
+A lightweight WordPress plugin to display a page-specific hit counter.
 
 <img src="https://github.com/andriussok/simple-hit-counter/blob/main/screenshot.png" width="300" />
 
 ## Features
-- Page-specific hit counter: The counter increments each time the page is reloaded.
-- Counts human visits only, ignoring bots with [CrawlerDetect](https://github.com/JayBizzle/Crawler-Detect).
-- Dynamic animation using [CountUp.js](https://github.com/inorganik/CountUp.js).
-- LED Digit7 style display using [DSEG7 Classic Font](https://github.com/keshikan/DSEG/).
-- Store data in metafields table or in dedicated table
+
+- **Page-specific hit counter**: Increments with each page reload.
+- **Counts human visits only**: Bots are ignored using [CrawlerDetect](https://github.com/JayBizzle/Crawler-Detect).
+- **Dynamic animation**: Displays smooth count-up effects with [CountUp.js](https://github.com/inorganik/CountUp.js).
+- **LED Digit7 style display**: Utilises the [DSEG7 Classic Font](https://github.com/keshikan/DSEG/).
+- **Flexible data storage**: Choose between WordPress meta fields or a dedicated database table.
 
 
 ## Development
 
-1. Clone repo
-2. `cd` in to your repo
-3. Run `composer install`
-4. Do your code changes
-5. Build zip for WP, run `composer build`
-
+1. Clone the repository.
+2. Navigate into the directory: `cd your-repo`.
+3. Install dependencies: `composer install`.
+4. Make your code changes.
+5. Build a `.zip` file for WordPress: `composer build`.
 
 ## WP Installation
 
 1. **Download Plugin**
-   - Download plugin `.zip` file from [releases](https://github.com/andriussok/simple-hit-counter/releases/).
-   - Or generate your own from this repo.
+   - Download the `.zip` file from [releases](https://github.com/andriussok/simple-hit-counter/releases/), or generate one from this repository.
 
 2. **Upload to WordPress**
-   - Navigate to **Plugins > Add New > Upload Plugin** in your WordPress dashboard.
+   - Go to **Plugins > Add New > Upload Plugin** in your WordPress dashboard.
    - Upload the `.zip` file and activate the plugin.
 
 3. **Add Shortcode**
-   - Use the `[simple_hit_counter]` shortcode anywhere on your page or post content where you want the counter to appear.
+   - Insert `[simple_hit_counter]` anywhere in your page or post content to display the counter.
+   - Use `[simple_hit_counter freeze]` to prevent the counter from incrementing (e.g., during edit mode).

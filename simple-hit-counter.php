@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Simple Hit Counter
-Description: A lightweight WordPress plugin that displays a page hit counter with dynamic animations and LED digit7 style display.
-Version: 1.0.0
+Description: A lightweight WordPress plugin to display a page-specific hit counter.
+Version: 1.0.1
 Requires at least: 6.5
 Author: Andrius Sok
 Author URI: https://andriuss.lt
@@ -30,19 +30,6 @@ function shc_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'shc_enqueue_scripts');
 
 
-// Include the appropriate storage handling file
-if ($shc_options['dedicated_table']) {
-  require_once plugin_dir_path(__FILE__) . 'includes/dedicated-table.php';
-} else {
-  require_once plugin_dir_path(__FILE__) . 'includes/meta-storage.php';
-}
-
-// Include files
-require_once plugin_dir_path(__FILE__) . 'includes/admin-page.php';
-require_once plugin_dir_path(__FILE__) . 'includes/shortcode.php';
-
-
-
 // Bot detection using CrawlerDetect
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
@@ -53,6 +40,19 @@ function shc_is_bot() {
 
   return $CrawlerDetect->isCrawler();
 }
+
+
+
+// Include the appropriate storage handling file
+if ($shc_options['dedicated_table']) {
+  require_once plugin_dir_path(__FILE__) . 'includes/dedicated-table.php';
+} else {
+  require_once plugin_dir_path(__FILE__) . 'includes/meta-storage.php';
+}
+
+// Include files
+require_once plugin_dir_path(__FILE__) . 'includes/admin-page.php';
+require_once plugin_dir_path(__FILE__) . 'includes/shortcode.php';
 
 
 
@@ -81,3 +81,14 @@ function shc_uninstall() {
   include_once(plugin_dir_path(__FILE__) . 'uninstall.php');
 }
 register_uninstall_hook(__FILE__, 'shc_uninstall');
+
+
+
+function shc_add_settings_link($links) {
+  
+  $settings_url = menu_page_url('shc-settings', false);
+  $settings_link = '<a href="' . esc_url($settings_url) . '">Settings</a>';
+  array_unshift($links, $settings_link);
+  return $links;
+}
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'shc_add_settings_link');

@@ -7,14 +7,17 @@ if (!defined('ABSPATH')) {
 // Shortcode to display the counter
 function shc_display_counter($atts) {
   if (!is_singular() || shc_is_bot()) {
-      return;
+    return;
   }
 
-  $post_id = get_the_ID();
+  // Check for 'freeze' in both positional and key-value formats
+  $freeze = in_array('freeze', $atts, true) || array_key_exists('freeze', $atts);
 
+  $post_id = get_the_ID();
+  
   // Increment only if not already incremented in this request
   static $already_incremented = false;
-  if (!$already_incremented) {
+  if (!$already_incremented && !$freeze) {
       $shc_options = get_option('shc_options', [
           'dedicated_table' => false,
       ]);
